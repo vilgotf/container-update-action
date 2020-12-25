@@ -3,7 +3,7 @@
 set -Eeuo pipefail
 
 script_fail() {
-	echo ::set-output name=should-update::true
+	echo ::set-output name=should-update::false
 	echo script failed, check your settings
 }
 
