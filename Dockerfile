@@ -5,7 +5,8 @@ RUN apk --no-cache add \
 	jq \
 	bash \
 	curl \
-	grep
+	grep \
+	coreutils
 
 COPY entrypoint.sh /entrypoint.sh
 
