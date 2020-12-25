@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eo pipefail
+
 readonly baseimage_date=$(skopeo inspect docker://docker.io/$INPUT_BASEIMAGE | jq .Created)
 readonly image_date=$(skopeo inspect docker://docker.io/$INPUT_IMAGE | jq .Created)
 
