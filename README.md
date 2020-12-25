@@ -16,3 +16,9 @@ Note that it currently only checks dockerhub images.
 ### `pypi`
 
 **Optional** Pypi project name
+
+## Outputs
+
+### `should-update`
+
+Returns 'true' or 'false'

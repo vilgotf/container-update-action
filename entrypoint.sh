@@ -13,12 +13,9 @@ if [[ ${INPUT_PYPI:-unset} != "unset" ]]; then
 fi
 
 if [[ $image_date < $baseimage_date ]]; then
-	exit 0
-#	echo "::set-output name=should-update::true"
+	echo "::set-output name=should-update::true"
 elif [[ $image_date < $pypi_date ]]; then
-	exit 0
-#	echo "::set-output name=should-update::true"
+	echo "::set-output name=should-update::true"
 else
-	exit 1
-#	echo "::set-output name=should-update::false"
+	echo "::set-output name=should-update::false"
 fi

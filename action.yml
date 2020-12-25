@@ -12,9 +12,9 @@ inputs:
   pypi:
     description: 'Pypi project name'
 #others to be implemented?
-#outputs:
-#  should-update:
-#    description: 'Returns "true" or "false" whether one should update the container'
+outputs:
+  should-update:
+    description: 'Returns "true" or "false" whether one should update the container'
 runs:
   using: 'docker'
   image: './Dockerfile'
