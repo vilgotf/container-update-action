@@ -1,6 +1,13 @@
 #!/bin/bash
 
-set -eo pipefail
+set -Eeuo pipefail
+
+script_fail() {
+	echo ::set-output name=should-update::true
+	echo script failed, check your settings
+}
+
+trap script_fail ERR
 
 skopeo inspect docker://docker.io/$INPUT_BASEIMAGE | jq -r .Created > baseimage_date &
 skopeo inspect docker://docker.io/$INPUT_IMAGE | jq -r .Created > image_date &
