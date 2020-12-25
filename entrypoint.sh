@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -Eeuo pipefail
+set -xEeuo pipefail
 
 script_fail() {
 	echo ::set-output name=should-update::true
@@ -27,7 +27,7 @@ readonly baseimage_date=$(<baseimage_date)
 
 if [[ $image_date < $baseimage_date ]]; then
 	echo ::set-output name=should-update::true
-elif [[ $image_date < $pypi_date ]]; then
+elif [[ ${INPUT_PYPI:-unset} != unset && $image_date < $pypi_date ]]; then
 	echo ::set-output name=should-update::true
 else
 	echo ::set-output name=should-update::false
