@@ -1,0 +1,20 @@
+# vim:sw=2:ts=2
+name: 'Container update'
+description: 'Update a container on baseimage change or other update'
+author: 'Vilgot Fredenberg'
+inputs:
+  baseimage:
+    description: 'Baseimage of container, format should be "author/image:tag", "standard" images should be "library/image:tag"'
+    required: true
+  image:
+    description: 'Image of container, format should be "author/image:tag"'
+    required: true
+  pypi:
+    description: 'Pypi project name'
+#others to be implemented?
+#outputs:
+#  should-update:
+#    description: 'Returns "true" or "false" whether one should update the container'
+runs:
+  using: 'docker'
+  image: 'Containerfile'
