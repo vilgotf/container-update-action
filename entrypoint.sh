@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -xEeuo pipefail
+set -Eeuo pipefail
 
 script_fail() {
 	echo ::set-output name=should-update::true
