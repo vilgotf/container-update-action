@@ -1,9 +1,10 @@
 #!/bin/bash
 
-readonly baseimage_date=$(skopeo inspect docker://docker.io/$baseimage | jq .Created)
-readonly image_date=$(skopeo inspect docker://docker.io/$image | jq .Created)
+readonly baseimage_date=$(skopeo inspect docker://docker.io/$1 | jq .Created)
+readonly image_date=$(skopeo inspect docker://docker.io/$2 | jq .Created)
 
-if [[ ${pypi:-unset} != "unset" ]]; then
+if [[ ${3:-unset} != "unset" ]]; then
+	pypi=$3
 	pypi=${pypi,,} # make lowercase
 	pypi_data="$(curl -s https://pypi.org/rss/project/${pypi}/releases.xml)"
 	date_unformated="$(echo "$pypi_data" | grep -m 1 -oP "<pubDate>\K(\w|,| |:)*")"
