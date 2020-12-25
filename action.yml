@@ -17,4 +17,4 @@ inputs:
 #    description: 'Returns "true" or "false" whether one should update the container'
 runs:
   using: 'docker'
-  image: './Containerfile'
+  image: './Dockerfile'

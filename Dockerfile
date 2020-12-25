@@ -1,4 +1,3 @@
-# vim:ft=dockerfile
 FROM alpine
 
 RUN apk --no-cache add skopeo jq bash curl
