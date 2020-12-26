@@ -1,6 +1,6 @@
 # vim:sw=2:ts=2
 name: 'Container update'
-description: 'Update a container on baseimage change or other update'
+description: 'Update a container on baseimage update or other update'
 author: 'Vilgot Fredenberg'
 inputs:
   baseimage:
@@ -9,14 +9,19 @@ inputs:
   image:
     description: 'Image of container, format should be "author/image:tag"'
     required: true
+  debug:
+    description: 'Enable debug'
+    default: 'false'
   pypi:
     description: 'Pypi project name'
-#others to be implemented?
+#others to be implemented on demand
 outputs:
   should-update:
     description: 'Returns "true" or "false" whether one should update the container'
 runs:
   using: 'composite'
   steps:
-    - run: ${{ github.action_path }}/script.sh
+    - run: echo baseimage=${{ inputs.baseimage }} image=${{ inputs.image }} debug=${{ inputs.debug }} pypi=${{ inputs.pypi }} > ${{ github.action_path }}/data
+      shell: bash
+    - run: ${{ github.workspace }}/script.sh
       shell: bash

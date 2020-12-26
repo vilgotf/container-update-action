@@ -13,6 +13,10 @@ Note that it currently only checks dockerhub images.
 
 **Required** Image of the container. Should be formated as "author/image:tag"
 
+### `debug`
+
+Set to true to enable debuging, defalts to false
+
 ### `pypi`
 
 **Optional** Pypi project name
