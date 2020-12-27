@@ -2,16 +2,16 @@
 
 set -Eeuo pipefail
 
-source data
-
-[[ $debug == true ]] && echo 'enabling debug!' && set -x
-
 script_fail() {
 	echo ::set-output name=should-update::false
 	echo script failed, check your settings
 }
 
 trap script_fail ERR
+
+source data
+
+[[ $debug == true ]] && echo 'enabling debug!' && set -x
 
 skopeo inspect docker://docker.io/$baseimage | jq -r .Created > baseimage_date &
 skopeo inspect docker://docker.io/$image | jq -r .Created > image_date &
