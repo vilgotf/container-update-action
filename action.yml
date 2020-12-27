@@ -21,7 +21,7 @@ outputs:
 runs:
   using: 'composite'
   steps:
-    - run: echo baseimage=${{ inputs.baseimage }} image=${{ inputs.image }} debug=${{ inputs.debug }} pypi=${{ inputs.pypi }} > ${{ github.action_path }}/data
+    - run: echo baseimage=${{ inputs.baseimage }} image=${{ inputs.image }} debug=${{ inputs.debug }} pypi=${{ inputs.pypi }} > ${{ github.workspace }}/data
       shell: bash
-    - run: ${{ github.workspace }}/script.sh
+    - run: ${{ github.action_path }}/script.sh
       shell: bash
