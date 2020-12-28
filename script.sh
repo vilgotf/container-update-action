@@ -20,10 +20,8 @@ skopeo inspect docker://docker.io/$image | jq -r .Created > image_date &
 
 if [[ $USE_PYPI == true ]]; then
 	INPUT_PYPI=${pypi,,} # make lowercase
-	pypi_data="$(curl -s https://pypi.org/rss/project/${INPUT_PYPI}/releases.xml)"
-	date_unformated="$(echo "$pypi_data" | grep -m 1 -oP "<pubDate>\K(\w|,| |:)*")"
-	date_formated=$(date -ud "$date_unformated" --iso-8601=seconds)
-	readonly pypi_date=${date_formated%%+}
+	pypi_data="$(curl -fsSL https://pypi.org/pypi/$INPUT_PYPI/json)"
+	readonly pypi_date=$(jq -r .urls[0].upload_time_iso_8601 <<< $pypi_data)
 fi
 
 wait
