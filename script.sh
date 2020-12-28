@@ -1,22 +1,23 @@
 #!/bin/bash
 
-set -Eeuo pipefail
+set -Euo pipefail
 
 script_fail() {
 	echo ::set-output name=should-update::false
 	echo script failed, check your settings
+	exit 1
 }
 
 trap script_fail ERR
 
 source data
 
-$debug && echo enabling debug!; set -x
+$debug && echo enabling debug! && set -x
 
 skopeo inspect docker://docker.io/$baseimage | jq -r .Created > baseimage_date &
 skopeo inspect docker://docker.io/$image | jq -r .Created > image_date &
 
-[[ -n $pypi_project ]] && pypi=true || pypi=false
+[[ $pypi_project ]] && pypi=true || pypi=false
 
 if $pypi; then
 	pypi_data=$(curl -fsSL https://pypi.org/pypi/$pypi_project/json)
