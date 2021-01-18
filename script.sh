@@ -3,7 +3,7 @@
 set -Euo pipefail
 
 script_fail() {
-	echo ::set-output name=should-update::false
+	echo "::set-output name=should-update::false"
 	echo script failed, check your settings
 	exit 1
 }
@@ -30,9 +30,9 @@ readonly image_date=$(<image_date)
 readonly baseimage_date=$(<baseimage_date)
 
 if [[ $image_date < $baseimage_date ]]; then
-	echo ::set-output name=should-update::true
+	echo "::set-output name=should-update::true"
 elif $pypi && [[ $image_date < $pypi_date ]]; then
-	echo ::set-output name=should-update::true
+	echo "::set-output name=should-update::true"
 else
-	echo ::set-output name=should-update::false
+	echo "::set-output name=should-update::false"
 fi
